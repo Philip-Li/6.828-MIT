@@ -9,6 +9,7 @@ This is due to historical reason. Early PCs has 16-bit 8088 processor, which add
 
 **detail**  
 So the address space is divided into
+
 | name | hex addr | dec addr |
 | --- | --- | --- |
 | low memory   | 0x00000 ~ 0x0A000  | 000KB ~ 640KB   |
