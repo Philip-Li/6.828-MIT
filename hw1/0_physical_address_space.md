@@ -9,10 +9,10 @@ This is due to historical reason. Early PCs has 16-bit 8088 processor, which add
 
 **detail**  
 So the address space is divided into  
-low memory 0x00000 ~ 0x0A000 (0KB   ~ 640KB)  
-VGA 	   0x0A000 ~ 0x0C000 (640KB ~ 768KB)  
-firmware   0x0C000 ~ 0x0F000 (768KB ~ 960KB)  
-BIOS       0x0F000 ~ 0x10000 (960KB ~ 1MB)  
+low memory     0x00000 ~ 0x0A000 (0KB   ~ 640KB)  
+VGA 	       0x0A000 ~ 0x0C000 (640KB ~ 768KB)  
+firmware       0x0C000 ~ 0x0F000 (768KB ~ 960KB)  
+BIOS	       0x0F000 ~ 0x10000 (960KB ~ 1MB)  
 
 
 **"32-bit memory hole"**  
