@@ -16,5 +16,10 @@ So the address space is divided into
 |firmware     |0x0C000 ~ 0x0F000  |768KB ~ 960KB   |  
 |BIOS	      |0x0F000 ~ 0x10000  |960KB ~ 1MB     |
 
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
 **"32-bit memory hole"**  
 The later 32-bit cpus were able to addressing 2^32 (4GB) memeory (same number of data and addressing pins). Some devices are mapped on top of the 4GB space. So when later models (64-bit) extends memory even further, they have to leave a hole for compatiable purpose.
