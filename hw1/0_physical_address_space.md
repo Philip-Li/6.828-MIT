@@ -8,7 +8,9 @@ above 640KB
 This is due to historical reason. Early PCs has 16-bit 8088 processor, which addresses up to 2^20 = 1MB (0x00100000). Notice that 8088 has 16 data pins but 20-bit addressing pins
 
 **detail**  
-So the address space is divided into  
+So the address space is divided into
+|name|hex addr|dec addr|
+| --- | --- |
 |low memory   |0x00000 ~ 0x0A000  |000KB ~ 640KB   |  
 |VGA 	      |0x0A000 ~ 0x0C000  |640KB ~ 768KB   |  
 |firmware     |0x0C000 ~ 0x0F000  |768KB ~ 960KB   |  
