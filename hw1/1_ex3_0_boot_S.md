@@ -152,7 +152,7 @@ If boot failed, cpu will spin forever in an empty loop.
 
 
 ###GDT setup in assembly
-***GDT description structure***
+***GDT description structure***  
 GDT is loaded by _lgdt_ with a GDT description structure containing two parts:  
 ![GDT description structure](http://wiki.osdev.org/images/7/77/Gdtr.png)
 
@@ -168,12 +168,12 @@ The first part is a 2-byte size, which is sizeof(gdt) - 1. This is because _size
 The second part is the 4-byte address of the GDT.  
 
 ***GDT***
-At least three items in GDT:  
-1. null descriptor ([source](http://wiki.osdev.org/GDT_Tutorial) says its used to store pointer to GDT itself. Not sure why.)
-2. code segment descriptor
-3. data segment descriptor
+At least three items in GDT:    
+1. null descriptor ([source](http://wiki.osdev.org/GDT_Tutorial) says its used to store pointer to GDT itself. Not sure why.)  
+2. code segment descriptor  
+3. data segment descriptor  
 
-This corresponds to code
+This corresponds to code  
 ```  
 gdt:  
   SEG_NULL  
@@ -244,7 +244,7 @@ shifed by 24 (16 for first half + 8 for second half).
 masked with 0xff for the third part takes up 8 bits (56 to 63).
 
 
-***access byte***
+***access byte***  
 ![access bits and flags](http://wiki.osdev.org/images/1/1b/Gdt_bits.png)
 
 
@@ -255,10 +255,10 @@ masked with 0xff for the third part takes up 8 bits (56 to 63).
 
 
 _STA\_X_ is 0x8 or 1000b, turning on execution bit (4th bit)
-_STA\_R_ and _STA_\W_ is 0x2 or 10b, turning on RW bit. for code segment, this means readable (never writable). for data segment, this means writable (read is always allowed). Whether a segment is a data or code segment depends on execution bit. 
+_STA\_R_ and _STA\_W_ is 0x2 or 10b, turning on RW bit. for code segment, this means readable (never writable). for data segment, this means writable (read is always allowed). Whether a segment is a data or code segment depends on execution bit. 
 
 
-***flags***
+***flags***  
 ```  
 0xC0 | ((lim >> 28) & 0xf)
 ```  
@@ -270,9 +270,9 @@ _flags_ takes up the upper four bits of a bite, which third part of _limit_ take
 The detailed description of descriptor bits can be found [here](http://wiki.osdev.org/GDT)
 
 
-***.word & .byte***
+***.word & .byte***  
 here, one word is 2 byte so its  
-_low to high_  
+(_low to high_)  
 .word 8-bits, 8-bits  
 .byte 8-bits, 8-bits, 8-bits, 8-bits  
 
@@ -282,7 +282,7 @@ or
 .byte (second part of _base_), (type), (flags, third part of _limit_), (third part of _base_)  
 
 
-***alignment***
+***alignment***  
 ```  
 .p2align 2  
 ```  
