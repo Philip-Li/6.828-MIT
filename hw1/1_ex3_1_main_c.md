@@ -9,6 +9,10 @@ readsect(void *dst, uint32_t offset)
 ```  
 _readsect_ falls into three portions: wait for disk, set read status, read from sector
 
+###parameters
+dst: memory address to place code  
+offset: disk LBA address (explained later)  
+
 
 ###set read status
 The main portion of _readsect_ is
@@ -139,18 +143,76 @@ tinsl
 ```  
 read _cx_ bytes from port _dx_ and save in _es:di_. Here _cx_ is _cnt_, _dx_ is _port_ and _di_ is _addr_.  
 
+
+```  
+memory  
+cc  
+```  
+save registers in memory and tell gcc flag register is affected
+
+
 see (command description)[http://x86.renejeschke.de/html/file_module_x86_id_279.html]  
 
-
-
-###(To be continued ...)
 
 ###readseg
 ```  
 readseg(uint32_t pa, uint32_t count, uint32_t offset)  
 ```  
 
+
+###parameters
 Takes three arguments  
-pa: physical address
-count: size of sector in bits
-offset: 
+pa: physical address  
+count: size of sector  
+offset: disk LBA address  
+
+
+###the code
+```  
+uint32_t end_pa;  
+end_pa = pa + count;  
+pa &= ~(SECTSIZE - 1);  
+offset = (offset / SECTSIZE) + 1;  
+while (pa < end_pa) {  
+	readsect((uint8_t*) pa, offset);  
+	pa += SECTSIZE;  
+	offset++;  
+}  
+```  
+
+Line by line  
+
+
+```  
+uint32_t end_pa;  
+end_pa = pa + count;  
+```  
+end address of the segment
+
+
+```  
+pa &= ~(SECTSIZE - 1);  
+```  
+This operation finds the start of different sector for different pa.  
+
+For example,  
+a pa < 512, will be rounded down to 0.  
+1111 ... 1110 0000 0000  (~511)
+0000 ... 0001 1111 1111  (511)
+&  
+-----------------------  
+0000 ... 0000 0000 0000  (0)
+
+
+a pa >=512 and < 1024 will be rounded down to 512.  
+1111 ... 1110 0000 0000  (~511)
+0000 ... 0011 1111 1111  (1023)
+&  
+-----------------------  
+0000 ... 0010 0000 0000  (512)
+
+
+The round down effect is due to all zeros of ~511. Very nice hack.
+
+
+###(To be continued ...)
