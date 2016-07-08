@@ -187,7 +187,7 @@ Line by line
 uint32_t end_pa;  
 end_pa = pa + count;  
 ```  
-end address of the segment
+end address of the segment  
 
 
 ```  
@@ -197,16 +197,16 @@ This operation finds the start of different sector for different pa.
 
 For example,  
 a pa < 512, will be rounded down to 0.  
-1111 ... 1110 0000 0000  (~511)
-0000 ... 0001 1111 1111  (511)
+1111 ... 1110 0000 0000  (~511)  
+0000 ... 0001 1111 1111  (511)  
 &  
 -----------------------  
-0000 ... 0000 0000 0000  (0)
+0000 ... 0000 0000 0000  (0)  
 
 
 a pa >=512 and < 1024 will be rounded down to 512.  
-1111 ... 1110 0000 0000  (~511)
-0000 ... 0011 1111 1111  (1023)
+1111 ... 1110 0000 0000  (~511)  
+0000 ... 0011 1111 1111  (1023)  
 &  
 -----------------------  
 0000 ... 0010 0000 0000  (512)
