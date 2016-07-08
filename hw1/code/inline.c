@@ -6,12 +6,14 @@ void func1();
 void DoCheck(uint32_t dwSomeValue);
 void do_print(uint32_t dwSomeValue);
 void func4();
+void symbolic();
 
 int main(int argc, char** argv) {
   //func1();
   //DoCheck(10000);
   //do_print(30);
-  func4();
+  //func4();
+  symbolic();
   return 0;
 }
 
@@ -72,4 +74,16 @@ void func4() {
 		: "rdx");
 
   printf("msr: %llx\n", msr);
+}
+
+void symbolic() {
+  uint32_t c = 1;
+  uint32_t d;
+  uint32_t *e = &c;
+  
+  asm ("mov %[e], %[d]"
+      :[d] "=m" (d)
+      :[e] "m" (*e));
+  
+  printf("%d\n", d);
 }
